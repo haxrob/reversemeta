@@ -52,7 +52,7 @@ There are two settings that must be configured in Metasploit for this to work -
 
 2. By default Metasploit will bind to interface address specified by LHOST. Configure reverse listener to bind to the loopback address or all interfaces with `ReverseListenerBindAddress 0.0.0.0`
 
-On success, a meterpreter session will be established between the attacker and the victim hosts -
+On success, a session will be established between the attacker and the victim hosts -
 
 ![Image](images/6.png)
 
