@@ -19,11 +19,11 @@ Take note of the direction of the arrows in the following diagram. The attacking
 Before exploitation, a reverse SSH tunnel is established from the attacking host to the proxy host by invoking the ssh client with the `-R` switch. Connections are forwarded to localhost. In this example, port 4444 is used for both the local and remote bind port -
 
 ```bash
-ssh user@10.0.0.1 -R 4444:127.0.0.1:4444
+ssh -f -N -T user@10.0.0.1 -R 4444:127.0.0.1:4444
 ```
 ![Image](images/3.png)
 
-By default, SSHD will listen to the loopback interface only on the remote host. We want to allow external connectivity to port 4444 on our proxy host so our victim host can connect. Use the `-g` switch or configure `GatewayPorts yes` in `/etc/ssh/sshd_config` on the SSH proxy so the socket listens on 0.0.0.0. You can verify this is working (i.e 0.0.0.0) -
+By default, SSHD will listen to the loopback interface only on the remote host. We want to allow external connectivity to port 4444 on our proxy host so our victim host can connect. Configure `GatewayPorts yes` in `/etc/ssh/sshd_config` on the SSH proxy so the socket listens on 0.0.0.0. You can verify this is working (i.e 0.0.0.0) -
 
 ``` bash
 $ netstat -tan | grep 4444
@@ -54,7 +54,7 @@ Recapping and putting this all together with an example payload -
 1) On the attacking machine, connect to the SSH proxy and create a reverse tunnel -
 
 ```
-# ssh user@10.0.0.1 -R 4444:127.0.0.1:4444
+# ssh -f -N -T user@10.0.0.1 -R 4444:127.0.0.1:4444
 ```
 
 2) Open msfconsole and configure and execute -  
