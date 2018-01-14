@@ -19,7 +19,7 @@ Take note of the direction of the arrows in the following diagram. The attacking
 Before exploitation, a reverse SSH tunnel is established from the attacking host to the proxy host by invoking the ssh client with the `-R` switch. Connections are forwarded to localhost. In this example, port 4444 is used for both the local and remote bind port -
 
 ```bash
-ssh -f -N -T user@10.0.0.1 -R 4444:127.0.0.1:4444
+ssh user@10.0.0.1 -f -N -T -R 4444:127.0.0.1:4444
 ```
 ![Image](images/3.png)
 
@@ -54,7 +54,7 @@ Recapping and putting this all together with an example payload -
 1) On the attacking machine, connect to the SSH proxy and create a reverse tunnel -
 
 ```
-# ssh -f -N -T user@10.0.0.1 -R 4444:127.0.0.1:4444
+# ssh user@10.0.0.1 -f -N -T -R 4444:127.0.0.1:4444
 ```
 
 2) Open msfconsole and configure and execute -  
